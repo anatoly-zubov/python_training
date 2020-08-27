@@ -13,20 +13,20 @@ class UntitledTestCase(unittest.TestCase):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
 
+    def add_empty_contact(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, "admin", "secret")
+        self.create_contact(wd, Group_contact(firstname="", lastname="", homephone="", mobile="", email=""))
+        self.return_home_page(wd)
+        self.logout(wd)
+
     
     def test_untitled_test_case(self):
         wd = self.wd
         self.open_home_page(wd)
         self.login(wd, "admin", "secret")
-        self.create_contact(wd, Group_contact("Anatolii", "Zubov", "222-22-22", "846-743-82-13", "gagfg\\dsgfg"))
-        self.return_home_page(wd)
-        self.logout(wd)
-
-    def add_empty_contact(self):
-        wd = self.wd
-        self.open_home_page(wd)
-        self.login(wd, "admin", "secret")
-        self.create_contact(wd, Group_contact("", "", "", "", ""))
+        self.create_contact(wd, Group_contact(firstname="Anatolii", lastname="Zubov", homephone="222-22-22", mobile="846-743-82-13", email="gagfg\\dsgfg"))
         self.return_home_page(wd)
         self.logout(wd)
 
