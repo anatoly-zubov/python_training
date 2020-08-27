@@ -21,13 +21,14 @@ class UntitledTestCase(unittest.TestCase):
         self.return_home_page(wd)
         self.logout(wd)
 
+
     def logout(self, wd):
         wd.find_element_by_link_text("Logout").click()
 
     def return_home_page(self, wd):
         wd.find_element_by_link_text("home").click()
 
-    def create_contact(self, wd, firstname= "Anatoly", lastname = "Zubov", homephone="11-11-11", mobile="22-22-11-22", email="fhjef"):
+    def create_contact(self, wd, firstname, lastname, homephone, mobile, email):
         wd.find_element_by_link_text("add new").click()
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
@@ -45,7 +46,7 @@ class UntitledTestCase(unittest.TestCase):
         wd.find_element_by_name("email").send_keys(email)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
 
-    def login(self, wd, username="admin", password="password"):
+    def login(self, wd, username, password):
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_name("pass").clear()
