@@ -12,6 +12,15 @@ class TestAddressbook(unittest.TestCase):
     def setUp(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
+
+    def test_empty_addressbook(self):
+        wd = self.wd
+        self.open_home_page(wd)
+        self.login(wd, username="admin", password="secret")
+        self.open_groups_page(wd)
+        self.create_group(wd, Group(name="", header="", footer=""))
+        self.return_to_groups_page(wd)
+        self.logout(wd)
     
     def test_addressbook(self):
         wd = self.wd
@@ -72,11 +81,4 @@ class TestAddressbook(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-def test_empty_addressbook(self):
-        wd = self.wd
-        self.open_home_page(wd)
-        self.login(wd, username="admin", password="secret")
-        self.open_groups_page(wd)
-        self.create_group(wd, Group(name="", header="", footer=""))
-        self.return_to_groups_page(wd)
-        self.logout(wd)
+
