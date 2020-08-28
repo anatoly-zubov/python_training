@@ -13,7 +13,7 @@ class Application:
 
     def login(self, username, password):
         wd = self.wd
-        self.open_home_page(wd)
+        self.open_home_page()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_name("pass").clear()
