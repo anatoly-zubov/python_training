@@ -1,6 +1,5 @@
 from selenium import webdriver
 
-
 class Appcontact:
 
     def __init__(self):
@@ -45,8 +44,10 @@ class Appcontact:
         wd.find_element_by_link_text("home").click()
 
     def logout(self):
-        wd = self.wd
-        wd.find_element_by_link_text("Logout").click()
+         wd = self.wd
+         wd.find_element_by_link_text("Logout").click()
+         wd.find_element_by_name("user")
+
 
     def destroy(self):
         self.wd.quit()
