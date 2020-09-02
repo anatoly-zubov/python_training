@@ -11,10 +11,10 @@ def app(request):
 
 def untitled_test_case(app):
     app.session.login(username="admin", password="secret")
-    app.create_contact(Group_contact(firstname ="", lastname="", homephone="", mobile="", email=""))
+    app.contact.create_contact(Group_contact(firstname ="", lastname="", homephone="", mobile="", email=""))
     app.session.logout()
 
 def test_untitled_test_case(app):
     app.session.login(username="admin", password="secret")
-    app.create_contact(Group_contact(firstname="Anatolii", lastname="Zubov", homephone="222-22-22", mobile="846-743", email="gasgfg"))
+    app.contact.create_contact(Group_contact(firstname="Anatolii", lastname="Zubov", homephone="222-22-22", mobile="846-743", email="gasgfg"))
     app.session.logout()
