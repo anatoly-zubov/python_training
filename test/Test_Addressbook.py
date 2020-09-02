@@ -11,12 +11,12 @@ def app(request):
 
 
 def test_empty_addressbook(app):
-    app.login(username="admin", password="secret")
+    app.session.login(username="admin", password="secret")
     app.create_group(Group(name="", header="", footer=""))
-    app.logout()
+    app.session.logout()
     
 def test_addressbook(app):
-    app.login(username="admin", password="secret")
+    app.session.login(username="admin", password="secret")
     app.create_group(Group(name="newgroup", header="grouplogo", footer="groupfooter"))
-    app.logout()
+    app.session.logout()
 

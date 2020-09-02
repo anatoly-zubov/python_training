@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 from model.group_contact import Group_contact
-from fixture.Appcontact import Appcontact
+from fixture.appcontact import Appcontact
 
 @pytest.fixture
 def app(request):
@@ -10,11 +10,11 @@ def app(request):
     return Appcontact
 
 def add_empty_contact(app):
-    app.login(username = "admin", password = "secret")
-    app.create_contact(Group_contact(firstname="", lastname="", homephone="", mobile="", email=""))
+    app.session.login(username = "admin", password = "secret")
+    app.session.create_contact(Group_contact(firstname="", lastname="", homephone="", mobile="", email=""))
     app.logout()
 
 def test_untitled_test_case(app):
-    app.login(username ="admin", password = "secret")
+    app.ogin(username ="admin", password = "secret")
     app.create_contact(Group_contact(firstname="Anatolii", lastname="Zubov", homephone="222-22-22", mobile="846-743", email="gasgfg"))
     app.logout()
