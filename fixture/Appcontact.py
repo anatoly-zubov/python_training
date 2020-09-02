@@ -13,6 +13,7 @@ class Appcontact:
 
     def login(self, username, password):
         wd = self.wd
+        self.open_home_page()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
         wd.find_element_by_name("pass").clear()
@@ -37,6 +38,7 @@ class Appcontact:
         wd.find_element_by_name("email").clear()
         wd.find_element_by_name("email").send_keys(group_contact.email)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
+        self.return_home_page()
 
     def return_home_page(self):
         wd = self.wd
