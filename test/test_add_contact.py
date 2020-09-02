@@ -7,7 +7,7 @@ from fixture.appcontact import Appcontact
 def app(request):
     fixture = Appcontact()
     request.addfinalizer(fixture.destroy)
-    return Appcontact
+    return fixture
 
 def untitled_test_case(app):
     app.login(username="admin", password="secret")
