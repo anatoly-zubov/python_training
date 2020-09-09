@@ -9,12 +9,12 @@ def app(request):
     request.addfinalizer(fixture.destroy)
     return fixture
 
-def untitled_test_case(app):
+def test_add_empty_contact(app):
     app.session.login(username="admin", password="secret")
     app.contact.create_contact(Group_contact(firstname ="", lastname="", homephone="", mobile="", email=""))
     app.session.logout()
 
-def test_untitled_test_case(app):
+def test_add_contact(app):
     app.session.login(username="admin", password="secret")
     app.contact.create_contact(Group_contact(firstname="Anatolii", lastname="Zubov", homephone="222-22-22", mobile="846-743", email="gasgfg"))
     app.session.logout()
