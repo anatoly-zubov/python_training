@@ -1,8 +1,7 @@
-from model.group import Group
+from fixture.precond_verifi import precond_verification
 
 
 def test_delete_first_group(app):
-    if app.group.count() == 0:
-        app.group.create(Group(name="test"))
+    precond_verification(app)
     app.group.delete_first_group()
 
