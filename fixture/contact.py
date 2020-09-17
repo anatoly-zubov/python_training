@@ -4,6 +4,10 @@ class ContactHelper:
     def __init__(self, app):
         self.app = app
 
+    def open_home_page(self):
+        wd = self.app.wd
+        wd.find_element_by_link_text("home").click()
+
     def create_contact(self, group_contact):
         wd = self.app.wd
         wd.find_element_by_link_text("add new").click()
@@ -56,4 +60,5 @@ class ContactHelper:
 
     def count(self):
         wd = self.app.wd
+        self.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
