@@ -1,3 +1,4 @@
+from random import randrange
 from model.group import Group
 from fixture.precond_verifi import precond_verifi_group
 
@@ -5,12 +6,13 @@ from fixture.precond_verifi import precond_verifi_group
 def test_modify_group_name(app):
     precond_verifi_group(app)
     old_groups = app.group.get_group_list()
+    index = randrange(len(old_groups))
     group = Group(name="New_Group")
-    group.id = old_groups[0].id
-    app.group.modify_first_group(group)
+    group.id = old_groups[index].id
+    app.group.modify_group_by_index(group,index)
     new_groups = app.group.get_group_list()
     assert len(old_groups) == len(new_groups)
-    old_groups[0]= group
+    old_groups[index]= group
     assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
 
 
