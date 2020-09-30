@@ -70,7 +70,7 @@ class ContactHelper:
         contacts = []
         for element in wd.find_elements_by_xpath("//tr[contains(@name,'entry')]"):
             cells = element.find_elements_by_tag_name("td")
-            text = element.text
+            text = cells[1].text
             id = element.find_element_by_name("selected[]").get_attribute("value")
-            contacts.append(Group_contact(firstname=text,lastname=text, id=id))
+            contacts.append(Group_contact(firstname=text, lastname=text, id=id))
         return contacts
