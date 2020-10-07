@@ -2,8 +2,9 @@ from sys import maxsize
 
 
 class Group_contact:
-    def __init__(self, firstname=None, lastname=None, workphone=None, homephone=None, fax=None, mobile=None,
-                 email=None, id=None, all_phones_from_page = None):
+    def __init__(self, firstname=None, lastname=None, workphone=None, homephone=None, fax=None, mobile=None,email = None,
+                 email2 = None, email3 = None, all_emails_from_page = None, id=None, all_phones_from_page = None,
+                 address = None):
         self.firstname = firstname
         self.lastname = lastname
         self.workphone = workphone
@@ -11,8 +12,12 @@ class Group_contact:
         self.mobile = mobile
         self.fax = fax
         self.email = email
+        self.email2 = email2
+        self.email3 = email3
+        self.all_emails_from_page = all_emails_from_page
         self.id = id
         self.all_phones_from_page = all_phones_from_page
+        self.address = address
 
     def __repr__(self):
         return "%s:%s" % (self.id, self.lastname)

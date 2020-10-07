@@ -1,3 +1,5 @@
+from typing import List
+
 from model.group_contact import Group_contact
 import re
 
@@ -31,6 +33,7 @@ class ContactHelper:
         self.change_field_value_contact("lastname", group_contact.lastname)
         self.change_field_value_contact("mobile", group_contact.mobile)
         self.change_field_value_contact("email", group_contact.email)
+
 
     def select_first_contact(self):
         wd = self.app.wd
@@ -86,12 +89,15 @@ class ContactHelper:
             self.contact_cache = []
             for element in wd.find_elements_by_name("entry"):
                 cells = element.find_elements_by_tag_name("td")
-                firstname = cells[1].text
-                lastname = cells[2].text
+                firstname = cells[2].text
+                lastname = cells[1].text
                 id = cells[0].find_element_by_tag_name("input").get_attribute("value")
+                address = cells[3].text
+                all_emails = cells[4].text
                 all_phones = cells[5].text
-                self.contact_cache.append(Group_contact(firstname=firstname, lastname=lastname, id=id,
-                                                        all_phones_from_page = all_phones))
+                self.contact_cache.append(Group_contact(firstname=firstname,
+                                                        lastname=lastname, id=id,
+                                                        all_phones_from_page = all_phones, all_emails_from_page=all_emails, address=address))
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self,index):
@@ -119,8 +125,15 @@ class ContactHelper:
         mobile = wd.find_element_by_name("mobile").get_attribute("value")
         workphone = wd.find_element_by_name("work").get_attribute("value")
         fax = wd.find_element_by_name("fax").get_attribute("value")
-        return Group_contact(firstname=firstname, lastname=lastname, id=id, homephone=homephone,mobile=mobile,
-                             workphone=workphone, fax=fax)
+
+        address = wd.find_element_by_name("address").get_attribute("value")
+        email = wd.find_element_by_name("email").get_attribute("value")
+        email2 = wd.find_element_by_name("email2").get_attribute("value")
+        email3 = wd.find_element_by_name("email3").get_attribute("value")
+
+        return Group_contact(firstname=firstname, lastname=lastname, id=id, homephone=homephone, workphone=workphone,
+                       mobile=mobile, fax=fax, address=address,
+                       email=email, email2=email2, email3=email3)
 
 
     def get_contact_from_view_page(self,index):
