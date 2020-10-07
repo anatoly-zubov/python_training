@@ -89,11 +89,9 @@ class ContactHelper:
                 firstname = cells[1].text
                 lastname = cells[2].text
                 id = cells[0].find_element_by_tag_name("input").get_attribute("value")
-                all_phones = cells[5].text.splitlines()
+                all_phones = cells[5].text
                 self.contact_cache.append(Group_contact(firstname=firstname, lastname=lastname, id=id,
-                                                        homephone=all_phones[0],
-                                                        mobile=all_phones[1],
-                                                        workphone=all_phones[2]))
+                                                        all_phones_from_page = all_phones))
         return list(self.contact_cache)
 
     def open_contact_to_edit_by_index(self,index):
@@ -120,7 +118,9 @@ class ContactHelper:
         homephone = wd.find_element_by_name("home").get_attribute("value")
         mobile = wd.find_element_by_name("mobile").get_attribute("value")
         workphone = wd.find_element_by_name("work").get_attribute("value")
-        return Group_contact(firstname=firstname, lastname=lastname, id=id, homephone=homephone,mobile=mobile, workphone=workphone)
+        fax = wd.find_element_by_name("fax").get_attribute("value")
+        return Group_contact(firstname=firstname, lastname=lastname, id=id, homephone=homephone,mobile=mobile,
+                             workphone=workphone, fax=fax)
 
 
     def get_contact_from_view_page(self,index):
@@ -130,5 +130,7 @@ class ContactHelper:
         homephone = re.search("H: (.*)",text).group(1)
         mobile = re.search("M: (.*)", text).group(1)
         workphone = re.search("W: (.*)", text).group(1)
+        fax = re.search("F: (.*)", text).group(1)
+
         return Group_contact(homephone=homephone, mobile=mobile,
-                      workphone=workphone)
+                      workphone=workphone, fax=fax)
