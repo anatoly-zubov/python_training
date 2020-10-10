@@ -20,7 +20,7 @@ class Group_contact:
         self.address = address
 
     def __repr__(self):
-        return "%s:%s" % (self.id, self.lastname)
+        return "%s:%s;%s;%s;%s" % (self.id, self.firstname, self.lastname, self.mobile, self.email)
 
     def __eq__(self, other):
         return (self.id is None or other.id is None or self.id == other.id)\
